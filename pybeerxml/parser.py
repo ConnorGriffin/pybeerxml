@@ -71,6 +71,8 @@ class Parser(object):
                     for hop_node in list(recipeProperty):
                         hop = Hop()
                         self.nodes_to_object(hop_node, hop)
+                        if hop.amount > 0.226:
+                            hop.amount = hop.amount / 1000
                         recipe.hops.append(hop)
 
                 elif tag_name == "miscs":
