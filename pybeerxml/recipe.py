@@ -45,7 +45,7 @@ class Recipe(object):
         _ibu = 0.0
 
         for hop in self.hops:
-            if hop.alpha and hop.use.lower() == "boil":
+            if hop.alpha and hop.use.lower() in ["boil", 'first wort']:
                 _ibu += hop.bitterness(ibu_method, self.og, self.batch_size)
 
         return _ibu
@@ -101,7 +101,6 @@ class Recipe(object):
                 # 8.3454 is conversion factor from kg/L to lb/gal
                 mcu += f.amount * f.color * 8.3454 / self.batch_size
         return 1.4922 * (mcu**0.6859)
-
 
     @ibu.setter
     def ibu(self, value):
